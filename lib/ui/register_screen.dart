@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:register_api/bloc/register_bloc.dart';
 import 'package:register_api/bloc/register_state.dart';
+import 'package:register_api/ui/show_value_shared_pref.dart';
 import '../bloc/register_event.dart';
 import 'login_screen.dart';
 
@@ -247,7 +248,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             },
           listener: (context,state){
               if(state is RegisterDataIsloadedState){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginScreen()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ShowValueScreen()));
               }
               else if(state is RegisterIsFailure){
                 ScaffoldMessenger.of(context).showSnackBar(

@@ -26,29 +26,28 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>
 
 
           try{
+
             registerApiModel = await registerRepository.setRegisterRepository(
+
                 email: event.email,
                 password: event.password,
 
             );
+
             print(registerApiModel!.id);
             print(registerApiModel!.token);
 
 
 
-            if(registerApiModel!.token!=null){
+            // if(registerApiModel!.token!=null){
+
 
               SharedPreferencesClient().setToken(registerApiModel!.token);
 
-             String value = await SharedPreferencesClient().getToken();
 
-
-
-            }
-
+            // }
 
             emit(RegisterDataIsloadedState(registerApiModel :  registerApiModel!));
-
 
            }
 
