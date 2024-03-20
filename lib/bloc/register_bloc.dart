@@ -3,6 +3,8 @@ import 'package:register_api/bloc/register_event.dart';
 import 'package:register_api/bloc/register_state.dart';
 import 'package:register_api/model/register_api_model.dart';
 import 'package:register_api/repository/register_respoitory.dart';
+import 'package:register_api/shared_preferences_client.dart';
+
 
 class RegisterBloc extends Bloc<RegisterEvent,RegisterState>
 {
@@ -32,18 +34,35 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>
             print(registerApiModel!.id);
             print(registerApiModel!.token);
 
+
+
+            if(registerApiModel!.token!=null){
+
+              SharedPreferencesClient().setToken(registerApiModel!.token);
+
+             String value = await SharedPreferencesClient().getToken();
+
+
+
+            }
+
+
             emit(RegisterDataIsloadedState(registerApiModel :  registerApiModel!));
 
 
            }
 
 
-           catch(e){
+           catch(e)
+           {
             emit(RegisterIsFailure(e.toString()));
 
             }
       }
-    });
+
+    }
+
+    );
   }
 
 }
