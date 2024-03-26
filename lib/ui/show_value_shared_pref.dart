@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:register_api/model/register_api_model.dart';
 import 'package:register_api/shared_preferences_client.dart';
-
 
 class ShowValueScreen extends StatefulWidget {
   const ShowValueScreen({super.key});
@@ -11,31 +9,35 @@ class ShowValueScreen extends StatefulWidget {
 }
 
 class _ShowValueScreenState extends State<ShowValueScreen> {
-  RegisterApiModel? registerApiModel;
 
 
   late String token;
-
+    late String id;
 
 
   @override
-  void initState()  {
+  void initState() {
 
     super.initState();
-    getToken();
+    getTokenAndId();
 
   }
 
 
-  void getToken() async {
-    String _token = await SharedPreferencesClient().getToken();
-    setState(() {
-      token = _token;
-    });
-  }
 
+     void getTokenAndId() async {
 
+       String _token = await SharedPreferencesClient().getToken();
+       String _id = await SharedPreferencesClient().getId();
 
+       setState(() {
+
+         token = _token;
+         id = _id;
+
+       });
+
+     }
 
 
   @override
@@ -47,7 +49,9 @@ class _ShowValueScreenState extends State<ShowValueScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Values of Shared Preferences'),
+        title: const Text(
+            'Values of Shared Preferences',
+        ),
       ),
       body:  Column(
         children: [
@@ -55,9 +59,15 @@ class _ShowValueScreenState extends State<ShowValueScreen> {
            child: Text(token,
                style: const TextStyle(
                 fontSize: 20,
-                 color: Colors.red
-           ),),
-
+                 color: Colors.red,
+           ),
+           ),
+          ),
+          Text(id,
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.blueAccent,
+            ),
 
           ),
         ],

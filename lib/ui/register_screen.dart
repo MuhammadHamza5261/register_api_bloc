@@ -33,6 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text("Sign Up",
             style: TextStyle(
               color: Colors.black,
@@ -247,7 +248,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               );
             },
           listener: (context,state){
-              if(state is RegisterDataIsloadedState){
+              if(state is RegisterDataIsloadedState)
+              {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ShowValueScreen()));
               }
               else if(state is RegisterIsFailure){
