@@ -16,7 +16,6 @@ class RegisterService{
            "Content-type": "application/json",
            "Accept": "application/json",
 
-
          },
 
           body: jsonEncode(<String,dynamic>{

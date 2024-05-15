@@ -6,7 +6,7 @@ import 'package:register_api/bloc/register_bloc.dart';
 import 'package:register_api/bloc/register_state.dart';
 import 'package:register_api/ui/show_value_shared_pref.dart';
 import '../bloc/register_event.dart';
-import 'login_screen.dart';
+
 
 
 class SignUpScreen extends StatefulWidget {
@@ -16,20 +16,22 @@ class SignUpScreen extends StatefulWidget {
   _SignUpScreenState createState() => _SignUpScreenState();
 }
 
+
 class _SignUpScreenState extends State<SignUpScreen> {
 
   final _formKey = GlobalKey<FormState>();
+
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
 
-
   @override
   Widget build(BuildContext context) {
 
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+  var width = MediaQuery.of(context).size.width;
+  var height = MediaQuery.of(context).size.height;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -44,12 +46,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   color: Color(0xba000000),
                   offset: Offset(0, 3),
                   blurRadius: 6,
-                )
+                ),
               ],
-            )),
+            ),
+        ),
         //centerTitle: true,
         leading: InkWell(
-          onTap: () => Get.to(LoginScreen()),
+          onTap: () => Get.to(()),
           child: const Icon(
             Icons.arrow_back,
             color: Colors.black,
@@ -61,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: SingleChildScrollView(
         child: BlocConsumer<RegisterBloc,RegisterState>(
             builder:(context,state){
-              return  Column(
+              return Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
@@ -233,11 +236,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       ),
                                     );
                                   }
-
-
                               ),
-
-
                             ],
                           ),
                         ),
@@ -247,24 +246,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ],
               );
             },
-          listener: (context,state){
+             listener: (context,state){
               if(state is RegisterDataIsloadedState)
               {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ShowValueScreen()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const ShowValueScreen()),
+                );
               }
               else if(state is RegisterIsFailure){
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     backgroundColor: Colors.red,
-                    content: Text(
-                      state.errorMessage,
-                    ),
+                    content: Text(state.errorMessage,),
                   ),
                 );
               }
-
-          }
-
+          },
         ),
       ),
     );

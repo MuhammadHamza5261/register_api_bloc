@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:register_api/shared_preferences_client.dart';
+
 
 class ShowValueScreen extends StatefulWidget {
   const ShowValueScreen({super.key});
@@ -10,34 +12,27 @@ class ShowValueScreen extends StatefulWidget {
 
 class _ShowValueScreenState extends State<ShowValueScreen> {
 
-
-  late String token;
-    late String id;
-
+  late String token = '';
+  late String id = '';
 
   @override
   void initState() {
-
     super.initState();
-    getTokenAndId();
+     getTokenAndId();
+  }
 
+  void getTokenAndId() async {
+
+    String _token = await SharedPreferencesClient().getToken() ?? '';
+    String _id = await SharedPreferencesClient().getId() ?? '';
+
+    setState(() {
+      token = _token;
+      id = _id;
+    });
   }
 
 
-
-     void getTokenAndId() async {
-
-       String _token = await SharedPreferencesClient().getToken();
-       String _id = await SharedPreferencesClient().getId();
-
-       setState(() {
-
-         token = _token;
-         id = _id;
-
-       });
-
-     }
 
 
   @override
@@ -50,28 +45,30 @@ class _ShowValueScreenState extends State<ShowValueScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-            'Values of Shared Preferences',
+          'Values of Shared Preferences',
         ),
       ),
-      body:  Column(
-        children: [
-          Center(
-           child: Text(token,
-               style: const TextStyle(
-                fontSize: 20,
-                 color: Colors.red,
-           ),
-           ),
-          ),
-          Text(id,
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.blueAccent,
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              id, style: const TextStyle(
+                fontSize: 30,
+                color: Colors.blueAccent,
+              ),
             ),
-
-          ),
-        ],
+            Text(
+              token,
+              style: const TextStyle(
+                fontSize: 30,
+                color: Colors.red,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+

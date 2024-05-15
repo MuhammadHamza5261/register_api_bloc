@@ -6,25 +6,25 @@ import 'package:register_api/repository/register_respoitory.dart';
 import 'package:register_api/shared_preferences_client.dart';
 
 
-
-
 class RegisterBloc extends Bloc<RegisterEvent,RegisterState>
 
 {
 
-  //  use the model class
-  RegisterApiModel? registerApiModel;
+    //  use the model class
+    RegisterApiModel? registerApiModel;
 
-  //  use the repository class
-  RegisterRepository registerRepository = RegisterRepository();
+    //  use the repository class
+    RegisterRepository registerRepository = RegisterRepository();
 
+    //  then we create a constructor and then call them
+    RegisterBloc(): super(RegisterInitialState())
 
-  //  then we create a constructor and then call them
-  RegisterBloc(): super(RegisterInitialState())
   {
+
     on<RegisterEvent>((event, emit) async{
 
       if(event is RegisterDataEvent){
+
         emit(RegisterInProgressState());
 
 
@@ -37,16 +37,15 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>
 
             );
 
+
             print(registerApiModel!.id);
             print(registerApiModel!.token);
-
 
 
             // if(registerApiModel!.token!=null){
 
               SharedPreferencesClient().setToken(registerApiModel!.token);
               SharedPreferencesClient().setId(registerApiModel!.id.toString());
-
 
             // }
 
@@ -57,9 +56,12 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>
 
            catch(e)
            {
+
             emit(RegisterIsFailure(e.toString()));
 
             }
+
+
       }
 
     }
