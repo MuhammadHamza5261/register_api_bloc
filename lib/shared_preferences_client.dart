@@ -2,11 +2,12 @@
 
   class SharedPreferencesClient {
 
+
    // create a method to set id and token
 
-   Future setToken(String token,) async {
+   Future setToken(String token) async {
 
-    SharedPreferences sp = await SharedPreferences.getInstance();
+   SharedPreferences sp = await SharedPreferences.getInstance();
     sp.setString('access_token', token);
 
    }
@@ -19,6 +20,7 @@
       sp.setString("access_id", id);
 
     }
+
 
    //  create a method to get the token
 
@@ -37,6 +39,22 @@
     SharedPreferences sp = await SharedPreferences.getInstance();
     return sp.getString('access_id',) ?? '';
 
-  }
+   }
+
+  Future clearData() async{
+     
+     SharedPreferences sp = await SharedPreferences.getInstance();
+
+     await sp.remove('access_id');
+     await sp.remove('access_token');
+
+   }
+
+
+
+
+
+
+
 
 }

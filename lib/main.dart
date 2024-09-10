@@ -2,14 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:register_api/bloc/register_bloc.dart';
-
+import 'package:register_api/styles/app_theme.dart';
 import 'dart:async';
 
 import 'package:register_api/ui/register_screen.dart';
-
-
-
-
 
 
 void main() {
@@ -28,18 +24,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      //to add dark and light mode you can add in main.dart file
       debugShowCheckedModeBanner: false,
       title: 'My App',
-      // home: SplashScreen(),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeMode.light,
 
       //  to define the routes
       initialRoute: "/splash",
       routes: {
-        "/splash": (context) => SplashScreen(),
+
+        "/splash": (context) =>  SignUpScreen(),
         "/signup": (context) => SignUpScreen(),
-
-
 
       },
 
@@ -58,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 1), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => SignUpScreen()),
       );

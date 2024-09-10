@@ -12,6 +12,8 @@ class ShowValueScreen extends StatefulWidget {
 
 class _ShowValueScreenState extends State<ShowValueScreen> {
 
+  SharedPreferencesClient sharedPreferencesClient = SharedPreferencesClient();
+
   late String token = '';
   late String id = '';
 
@@ -43,6 +45,12 @@ class _ShowValueScreenState extends State<ShowValueScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: GestureDetector(
+          onTap: (){
+            Navigator.pop(context);
+          },
+            child: Icon(Icons.arrow_back)),
+        backgroundColor: Colors.blueAccent,
         centerTitle: true,
         title: const Text(
           'Values of Shared Preferences',
@@ -51,19 +59,23 @@ class _ShowValueScreenState extends State<ShowValueScreen> {
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              id, style: const TextStyle(
+              'id is: $id', style: const TextStyle(
                 fontSize: 30,
                 color: Colors.blueAccent,
               ),
             ),
             Text(
-              token,
+              'Token is: $token',
               style: const TextStyle(
                 fontSize: 30,
                 color: Colors.red,
               ),
+            ),
+            const SizedBox(
+              height: 30,
             ),
           ],
         ),

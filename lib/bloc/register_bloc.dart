@@ -6,6 +6,7 @@ import 'package:register_api/repository/register_respoitory.dart';
 import 'package:register_api/shared_preferences_client.dart';
 
 
+
 class RegisterBloc extends Bloc<RegisterEvent,RegisterState>
 
 {
@@ -48,6 +49,8 @@ class RegisterBloc extends Bloc<RegisterEvent,RegisterState>
               SharedPreferencesClient().setId(registerApiModel!.id.toString());
 
             // }
+
+
 
             emit(RegisterDataIsloadedState(registerApiModel :  registerApiModel!));
 

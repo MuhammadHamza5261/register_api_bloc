@@ -6,7 +6,7 @@ class HttpClient {
   HttpClient.internal();
   static final HttpClient _instance = HttpClient.internal();
   factory HttpClient()=> _instance ;
-  static HttpClient get instance => _instance ;
+  static HttpClient get instance => _instance;
 
 
   Future<http.Response> postRequest(

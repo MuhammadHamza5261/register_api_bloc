@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:register_api/bloc/register_bloc.dart';
 import 'package:register_api/bloc/register_state.dart';
 import 'package:register_api/ui/show_value_shared_pref.dart';
 import '../bloc/register_event.dart';
-
 
 
 class SignUpScreen extends StatefulWidget {
@@ -52,11 +49,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         //centerTitle: true,
         leading: InkWell(
-          onTap: () => Get.to(()),
-          child: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
+          onTap: (){},
+
         ),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -198,7 +192,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           }
 
                                           return null;
-                                        }),
+                                        }
+                                        ),
                                   ),
                                 ),
                               ),

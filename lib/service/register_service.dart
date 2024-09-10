@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:register_api/model/register_api_model.dart';
 import 'package:http/http.dart' as http;
 
+
 class RegisterService{
 
    //  firstly we create a method
