@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:register_api/bloc/register_bloc.dart';
 import 'package:register_api/styles/app_theme.dart';
 import 'dart:async';
-
 import 'package:register_api/ui/register_screen.dart';
+
 
 
 void main() {
@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,
 
-      //  to define the routes
       initialRoute: "/splash",
       routes: {
 
